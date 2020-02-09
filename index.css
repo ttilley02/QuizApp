@@ -4,5 +4,6 @@ body {
     padding: 60px 0 0;
     margin: 0;
     font-size: 18px;
-    color: whitesmoke;
+    color: black;
+    background-color: gray;
 }
