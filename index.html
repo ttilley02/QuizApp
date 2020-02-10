@@ -18,13 +18,14 @@
             <div class="question">Greetings & start instruction</legend>
             <br>
             <br>        
-            <button type="submit" class ="js-startQuiz">Submit</button>
+            <button class="startQuiz">
+            <span class="button-label">Start!</span>
         </fieldset> 
     </Form>    
 <!-- field for questions and Submit button-->
     <Form= id="questionPage"> 
         <fieldset>
-            <legend class="questionCount"> Question N of 7</legend>
+            <!--<legend class="questionCount"> Question N of 7</legend>-->
             <div class= "question">question</h2>
             <br>
             <br>
@@ -44,7 +45,8 @@
             <button type="submit" class ="js-answerChosen">Submit</button>
             <br>
             <br>
-            <footer class="currentScore"> value "out of" value correct so far</footer>
+           <!--<footer class="currentScore"> value "out of" value correct so far</footer>-->
+           <span></span>
         </fieldset>
     </Form>  
 <!-- wrong Answer screen-->
@@ -54,36 +56,39 @@
             <div class="question">scalding message</legend>
             <br>
             <br>       
-            <button type="submit" class ="nextQuestionW">Next</button>
+            <button class="proceed0">
+            <span class="button-label">Next</span>
         </fieldset>
     </Form>  
 <!-- right Answer screen-->
     <Form= id="rightAnswerPage"> 
         <fieldset>
-            <h2 class= "wrongChoice">RIGHT</h2>
+            <h2 class= "rightChoice">RIGHT</h2>
             <div class="question">congrats message</legend>
             <br>
             <br>
-            <button type="submit" class ="nextQuestionR">Next</button>
+            <button class="proceed1">
+            <span class="button-label">Next</span>
         </fieldset>
     </Form>    
 
 <!-- Score and restart screen-->
     <Form= id="endOfQuiz">
             <fieldset> 
-            <h2 class= "wrongChoice">SCORE</h2>
+            <h2 class= "finished">SCORE</h2>
             <div class="question">message</legend>
             <br>
             <br>
-            <button type="submit" class ="retake">Retake</button>
+            <button class="restartQuiz">
+            <span class="button-label">Restart</span>
         </fieldset> 
     </Form>  
 
 
 
-            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
-            <script src="//code.jquery.com/jquery.min.js"></script>
-            <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
          
 </body>
 </html>
