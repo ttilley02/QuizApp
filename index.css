@@ -7,3 +7,7 @@ body {
     color: black;
     background-color: gray;
 }
+
+.js-hide{
+  display: none;
+}
