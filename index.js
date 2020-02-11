@@ -2,46 +2,44 @@
 
 // In-memory database of questions
 const questions = [ 
-  {id: cuid(), q1: "When was the first man made object sent into space?", answers:['1949','1961','1939','1957'], correctAnswer:'1957'},
-  {id: cuid(), q2: "A person who weighs 200 pounds on earth, what would he weigh on the surface of Mars?", answers:["45 pounds","130 pounds","76 pounds","112 pounds"], correctAnswer:"76 pounds"},
-  {id: cuid(), q3: "Which Planet spins backwards relative to the others?", answers:['venus','Mercury','Earth','Neptune'], correctAnswer:'Venus'},
-  {id: cuid(), q4: "Which Planet Has the Most Moons?",answers:['Mars','Saturn','Juptier','Uranus'], correctAnswer:'Jupiter'}, 
-  {id: cuid(), q5: "What is the Orbital period of Moon?", answers:['30 Days',' 27 Days','28 Days','31 Days'], correctAnswer:'27 Days'}, 
-  {id: cuid(), q6: "Which planet is nearest to the earth?", answers:['Venus','Mercury','Mars','The Moon'], correctAnswer:'Mercury'}, 
-  {id: cuid(), q7: "What is the longest continuous time a human has spent in space?",answers:['437 Days','360 Days','202 Days','148 Days'], correctAnswer:'437 Days'}, 
+  { question: "When was the first man made object sent into space?", answers:['1949','1961','1939','1957'], correctAnswer:'1957'},
+  { question: "A person who weighs 200 pounds on earth, what would he weigh on the surface of Mars?", answers:["45 pounds","130 pounds","76 pounds","112 pounds"], correctAnswer:"76 pounds"},
+  { question: "Which Planet spins backwards relative to the others?", answers:['venus','Mercury','Earth','Neptune'], correctAnswer:'Venus'},
+  { question: "Which Planet Has the Most Moons?",answers:['Mars','Saturn','Juptier','Uranus'], correctAnswer:'Jupiter'}, 
+  { question: "What is the Orbital period of Moon?", answers:['30 Days',' 27 Days','28 Days','31 Days'], correctAnswer:'27 Days'}, 
+  { question: "Which planet is nearest to the earth?", answers:['Venus','Mercury','Mars','The Moon'], correctAnswer:'Mercury'}, 
+  { question: "What is the longest continuous time a human has spent in space?",answers:['437 Days','360 Days','202 Days','148 Days'], correctAnswer:'437 Days'}, 
   ];
 
 // Create your initial store
 const store = {
     // Current question
-   currentQuestion:questions.q0,
+   currentQuestion:questions[0].question,
     // User's answer choice(s)
-   inputAnswer:questions.answers[0],
+   inputAnswer:questions[0].answers[0],
     // Current view
-   view:"wrongAnswerPage",
+   view:"startPage",
     // Score? Anything else?
    score: 0
 };
-/*  $('#startPage').show();
-    $('#questionPage').show();
-    $("#wrongAnswerPage").show();
-    $('#rightAnswerPage').show();
-    $('#endOfQuiz').show();
-*/
+
+
 // Template generators
 function generateAnswerList(answers) {}
 
 // Rendering functions
 function renderQuestionText() {}
-
+'use strict';
 //Update store functions
 
 function updateStore(){}
 
 // Event handlers
-function startSubmitted() {
-  $('#startPage').on('click', ".startQuiz", () => {
-    console.log("test");
+function startQuiz() {
+  $(".startPage").on('click', ".startQuizButton", function (event) {
+    hideAll();
+    $('.questionPage').show();
+
     
     // Retrieve answer identifier of user-checked radio button
     // Update STORE and render appropriate section
@@ -49,29 +47,37 @@ function startSubmitted() {
   });
 }
 function questionSubmitted() {
-  $('.user-controls').submit(function(event) {
+  $('.questionPage').submit(function(event) { 
     event.preventDefault();
+    hideAll();
+    $('.wrongAnswerPage').show(); 
     // Retrieve answer identifier of user-checked radio button
     // Perform check: User answer === Correct answer?
     // Update STORE and render appropriate section
   });
 }
 function wrongAnswerSubmitted() {
-  $('.user-controls').on('click', ".proceed0", () => {
+  $('.wrongAnswerPage').on('click', ".proceed0", function (event) {
+    hideAll();
+    $('.rightAnswerPage').show(); 
     // Retrieve answer identifier of user-checked radio button
     // Perform check: User answer === Correct answer?
     // Update STORE and render appropriate section
   });
 }
 function rightAnswerSubmitted() {
-  $('.user-controls').on('click', ".proceed1", () => {
+  $('.rightAnswerPage').on('click', ".proceed1", function (event) { 
+    hideAll();
+    $('.endOfQuiz').show(); 
     // Retrieve answer identifier of user-checked radio button
     // Perform check: User answer === Correct answer?
     // Update STORE and render appropriate section
   });
 }
 function restartSubmitted() {
-  $('.user-controls').on('click', ".restartQuiz", () => {
+  $('.endOfQuiz').on('click', ".restartQuiz", function (event) {  
+    hideAll();
+    $('.startPage').show(); 
     // Retrieve answer identifier of user-checked radio button
     // Perform check: User answer === Correct answer?
     // Update STORE and render appropriate section
@@ -81,39 +87,37 @@ function restartSubmitted() {
 
  //   handleAnswerSubmitted();
 
+function hideAll(){
+    $('.startPage').hide();
+    $('.questionPage').hide();
+    $(".wrongAnswerPage").hide();
+    $('.rightAnswerPage').hide();
+    $('.endOfQuiz').hide();
+}
+
 
 function render() {
   if (store.view === "startPage") {
-    $('#startPage').show();
-    $('#questionPage').hide();
-    $("#wrongAnswerPage").hide();
-    $('#rightAnswerPage').hide();
-    $('#endOfQuiz').hide();
+    hideAll();
+    $('.startPage').show();
   }else if (store.view === "rightAnswerPage") {
-    $('#startPage').hide();
-    $('#questionPage').hide();
-    $("#wrongAnswerPage").hide();
-    $('#rightAnswerPage').show();
-    $('#endOfQuiz').hide();
+    hideAll();
+    $('.questionPage').show();
   }else if (store.view === "wrongAnswerPage") {
-    $('#startPage').hide();
-    $('#questionPage').hide();
-    $("#wrongAnswerPage").show();
-    $('#rightAnswerPage').hide();
-    $('#endOfQuiz').hide();
+    hideAll();
+    $(".wrongAnswerPage").show();
  }else if (store.view === "questionPage") {
-   $('#startPage').hide();
-   $('#questionPage').hide();
-    $("#wrongAnswerPage").hide();
-    $('#rightAnswerPage').show();
-    $('#endOfQuiz').hide();
+    hideAll();
+    $('.rightAnswerPage').show();
   }else{
-    $('#startPage').hide();
-    $('#questionPage').hide();
-   $("#wrongAnswerPage").hide();
-    $('#rightAnswerPage').hide();
-    $('#endOfQuiz').show();
+    hideAll();
+    $('.endOfQuiz').show();
  }
 }
 
 render();
+startQuiz();
+questionSubmitted();
+wrongAnswerSubmitted();
+rightAnswerSubmitted();
+restartSubmitted();
