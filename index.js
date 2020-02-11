@@ -14,12 +14,13 @@ const questions = [
 // Create your initial store
 const store = {
     // Current question
-   q:questions.q1,
+   currentQuestion:questions.q0,
     // User's answer choice(s)
-   a:questions.a0,
+   inputAnswer:questions.answers[0],
     // Current view
-   view:"rightAnswerPage"
+   view:"wrongAnswerPage",
     // Score? Anything else?
+   score: 0
 };
 /*  $('#startPage').show();
     $('#questionPage').show();
@@ -81,7 +82,7 @@ function restartSubmitted() {
  //   handleAnswerSubmitted();
 
 
-/*function render() {
+function render() {
   if (store.view === "startPage") {
     $('#startPage').show();
     $('#questionPage').hide();
@@ -90,9 +91,9 @@ function restartSubmitted() {
     $('#endOfQuiz').hide();
   }else if (store.view === "rightAnswerPage") {
     $('#startPage').hide();
-    $('#wrongAnswerPage').show();
+    $('#questionPage').hide();
     $("#wrongAnswerPage").hide();
-    $('#rightAnswerPage').hide();
+    $('#rightAnswerPage').show();
     $('#endOfQuiz').hide();
   }else if (store.view === "wrongAnswerPage") {
     $('#startPage').hide();
@@ -100,7 +101,7 @@ function restartSubmitted() {
     $("#wrongAnswerPage").show();
     $('#rightAnswerPage').hide();
     $('#endOfQuiz').hide();
- }else if (store.view === "rightAnswerPage") {
+ }else if (store.view === "questionPage") {
    $('#startPage').hide();
    $('#questionPage').hide();
     $("#wrongAnswerPage").hide();
@@ -115,4 +116,4 @@ function restartSubmitted() {
  }
 }
 
-render();*/
+render();
