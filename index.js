@@ -39,7 +39,9 @@ function updateStore(){}
 
 // Event handlers
 function startSubmitted() {
-  $('.user-controls').on('click', ".startQuiz", () => {
+  $('#startPage').on('click', ".startQuiz", () => {
+    console.log("test");
+    
     // Retrieve answer identifier of user-checked radio button
     // Update STORE and render appropriate section
     
@@ -75,9 +77,9 @@ function restartSubmitted() {
   });
 }
 
-$(function(){
+
  //   handleAnswerSubmitted();
-});
+
 
 /*function render() {
   if (store.view === "startPage") {
