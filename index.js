@@ -1,6 +1,6 @@
 
 
-// In-memory database of questions
+// In-memory database of questions and dyanmic objects in the event that the app needs to be more dynamic.
   const STORE = {
     topic: "The Space Quiz",
     subtitle: "Ready for Lift off!",
@@ -40,7 +40,7 @@
     //4
     {
       question: "Which Planet Has the Most Moons?", 
-      options: ['Mars','Saturn','Juptier','Uranus'
+      options: ['Mars','Saturn','Jupiter','Uranus'
       
       
       ],
@@ -73,19 +73,19 @@
   score: 0
   
 };
-
+//Starts the Quiz from the start screen
 function startQuiz() {
   $('body').on('click', "#startMe", function (event) {
      createQuestions();
   });
 }
-
+//Creates first question listed in the questions object of STORE
 function createQuestions() {
   updateQuestionAndScore();
   $('main').html(htmlQuestion());
   updateOptions();
 }
-
+//Creates a tally of current question and current score
 function updateQuestionAndScore() {
   const html = $(`
       <section id="js-score"> Score: ${STORE.score}</section>
@@ -93,7 +93,7 @@ function updateQuestionAndScore() {
     `);
   $(".question-and-score").html(html);
 }
-
+//Converts question into HTML to feed to 'main'
 function htmlQuestion(){
 return $(
   `<form id='js-questions'>
@@ -106,7 +106,7 @@ return $(
     </fieldset>
   </form>`)
 }
-
+//Supplies options in conjuction with the current question
 function updateOptions()
 {
   let questionAtHand= STORE.questions[STORE.questionNumber];
@@ -123,7 +123,7 @@ function updateOptions()
   });
 }
 
-
+//Determines if there are more questions to be asked, otherwise it displays the results of the quiz
 function handleQuestions() {
   $('body').on('click','#next-question', (event) => {
     if(STORE.questionNumber === STORE.questions.length)
@@ -134,7 +134,7 @@ function handleQuestions() {
 }
 
 
-
+//Displays results of the quiz
 function displayResults() {
     let resultHtml = $(
     `<div class="results">
@@ -157,7 +157,7 @@ function displayResults() {
   $("main").html(resultHtml);
 }
 
-
+//tells the user if the answer selected is right or wrong with feedback and an image
 function handleSelectOption() {
   $('body').on("submit","#js-questions", function(event) {
     event.preventDefault();
@@ -192,7 +192,7 @@ function handleSelectOption() {
 }
 
 
-
+//Restarts the quiz
 function restartSubmitted() {
   $('body').on('click', "#restartQuiz", function (event) {  
    createQuestions();
