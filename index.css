@@ -51,6 +51,7 @@ legend {
 
 #answerBox{
   text-align: center;
+  
 }
 
 #answerRightPic {
@@ -76,6 +77,11 @@ legend {
   background-size: 100%;
  
 }
+.buttonColor{
+  color: white;
+  border: solid rgb(9, 102, 156) 6px;
+  background-color: rgb(9, 102, 156);
+}
 
 #next-question{
     margin: 0 auto;
@@ -97,7 +103,13 @@ legend {
 
 
 @media only screen and (min-width: 7.4em) {
-  fieldset {
+fieldset {
+      width: 13em;
+    }
+#answerRightPic {
+      width: 13em;
+    }
+#answerRightPic {
       width: 13em;
     }
 
@@ -107,11 +119,25 @@ legend {
 fieldset {
     width: 29.5em;
   }
-
+#answerRightPic {
+    width: 29.5em;
+  }
+#answerWrongPic {
+    width: 29.5em;
+  
+  }
 
 }
 @media only screen and (min-width: 550px) {
 fieldset {
+    width: 29.5em;
+  
+  }
+#answerRightPic {
+    width: 29.5em;
+  
+  }
+#answerWrongPic {
     width: 29.5em;
   
   }

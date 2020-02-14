@@ -141,7 +141,7 @@ function displayResults() {
       <form id="js-restart-quiz">
         <fieldset>
               <legend id="restartQuiz"> ${STORE.score}  out of  ${STORE.questions.length} missions were successful!</legend>
-              <button type="button" id="restartQuiz"> Back into the stratosphere! </button>
+              <button type="Button" id="restartQuiz"> Back into the stratosphere! </button>
             </div>
           </div>
         </fieldset>
@@ -168,9 +168,11 @@ function handleSelectOption() {
       STORE.score++; 
         $('main').html(
         `<section id=answerBox>Affirmative!</section>
+        <br>
          <div id=answerRightPic> 
          </div>
-         <button type="button" id="next-question" tabindex="6"> Next >> </button>
+         <br>
+         <button type="button" class='buttonColor' id="next-question" tabindex="6"> Next >> </button>
          
          `     
          
@@ -179,9 +181,11 @@ function handleSelectOption() {
     else {
          $('main').html(
         `<section id=answerBox>Houston we have a problem...</section>
-         <fieldset id=answerWrongPic> 
-         </fieldset>
-         <button type="button" id="next-question" tabindex="6"> Next >> </button>
+        <br>
+         <div id=answerWrongPic> 
+         </div>
+         <br>
+         <button type="button" class='buttonColor' id="next-question" tabindex="6"> Next >> </button>
          
         `
       );
