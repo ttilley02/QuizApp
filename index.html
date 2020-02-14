@@ -11,74 +11,19 @@
     <title>Document</title>
 </head>
 <body>
-
-<!-- greeting and button to start quiz-->
-    <section class="startPage">
-            <h2>START THE SPACE QUIZ</h2>
-            <button class="startQuizButton">Start</button>      
-    </section>    
-      
-<!-- field for questions and Submit button-->
-<form class="questionPage"> 
-    <fieldset>
-        <!--<legend class="questionCount"> Question N of 7</legend>-->
-        <div class= "question">question</h2>
-        <br>
-        <br>
-        <input type="radio" name="choice" id="js-selection0" value="0" checked>
-        <label>option1</label>
-        <br>
-        <input type="radio" name="choice" id="js-selection1" value="1">
-        <label>option2</label>
-         <br>
-        <input type="radio" name="choice" id="js-selection2" value="2">
-        <label>option3</label>
-        <br>
-        <input type="radio" name="choice" id="js-selection3" value="3">
-        <label>option4</label>
-        <br>
-        <br>
-        <button type="submit" class ="js-answerChosen">Submit</button>
-        <br>
-        <br>
-       <!--<footer class="currentScore"> value "out of" value correct so far</footer>-->
-    </fieldset>
-</form>  
-<!-- wrong Answer screen-->
-<section class="wrongAnswerPage">
-    <fieldset>
-        <h2 class= "wrongChoice">WRONG</h2>
-        <div class="question">scalding message</legend>
-        <br>
-        <br>       
-        <button class="proceed0">Next</button>
-        
-    </fieldset>
-</section>  
-<!-- right Answer screen-->
-<section class="rightAnswerPage"> 
-    <fieldset>
-        <h2 class= "rightChoice">RIGHT</h2>
-        <div class="question">congrats message</legend>
-        <br>
-        <br>
-        <button class="proceed1">Next </button>
-        
-    </fieldset>
-</section>    
-
-<!-- Score and restart screen-->
-<section class="endOfQuiz">
-        <fieldset> 
-        <h2 class= "finished">SCORE</h2>
-        <div class="question">message</legend>
-        <br>
-        <br>
-        <button class="restartQuiz">Restart</button>
-        
-    </fieldset> 
-</section>  
-
+  <header>     
+          <h1 class='quizTitle'>The Space Quiz</h1> 
+          <h3 class='subtitle'>Ready for Lift off!</h3>
+          <br>   
+          <div class="question-and-score"></div>   
+  </header>
+  <main role="main">
+      <fieldset>
+        <p>How well do you know about whats beyond Earth's atmosphere?</p>
+        <button type="button" id="startMe"> Enter Orbit</button>
+      </fieldset>
+  </main>
+  
 
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
   <script src="//code.jquery.com/jquery.min.js"></script>

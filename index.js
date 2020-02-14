@@ -1,123 +1,212 @@
 
 
 // In-memory database of questions
-const questions = [ 
-  { question: "When was the first man made object sent into space?", answers:['1949','1961','1939','1957'], correctAnswer:'1957'},
-  { question: "A person who weighs 200 pounds on earth, what would he weigh on the surface of Mars?", answers:["45 pounds","130 pounds","76 pounds","112 pounds"], correctAnswer:"76 pounds"},
-  { question: "Which Planet spins backwards relative to the others?", answers:['venus','Mercury','Earth','Neptune'], correctAnswer:'Venus'},
-  { question: "Which Planet Has the Most Moons?",answers:['Mars','Saturn','Juptier','Uranus'], correctAnswer:'Jupiter'}, 
-  { question: "What is the Orbital period of Moon?", answers:['30 Days',' 27 Days','28 Days','31 Days'], correctAnswer:'27 Days'}, 
-  { question: "Which planet is nearest to the earth?", answers:['Venus','Mercury','Mars','The Moon'], correctAnswer:'Mercury'}, 
-  { question: "What is the longest continuous time a human has spent in space?",answers:['437 Days','360 Days','202 Days','148 Days'], correctAnswer:'437 Days'}, 
-  ];
+  const STORE = {
+    topic: "The Space Quiz",
+    subtitle: "Ready for Lift off!",
+    questionType: "Mission",
+    totalQuestionType: "successful",
+    answerRightResponse: "Affirmative",
+    answerWrongResponse: "Houston we have a problem...",
+    secretMessage: "You are (Inter)Stellar",
 
-// Create your initial store
-const store = {
-    // Current question
-   currentQuestion:questions[0].question,
-    // User's answer choice(s)
-   inputAnswer:questions[0].answers[0],
-    // Current view
-   view:"startPage",
-    // Score? Anything else?
-   score: 0
+
+  questions: [//1
+  
+    {
+      question: 'When was the first man made object sent into space?',
+      options: [
+        '1949','1961', '1939', '1957'
+      ],
+      answer: "1957"
+    },
+    //2
+    {
+      question: "A person who weighs 200 pounds on earth, what would he weigh on the surface of Mars?",
+      options: [
+        "45 pounds","130 pounds","76 pounds","112 pounds"
+      ],
+      answer: "76 pounds"
+    },
+    //3
+    {
+      question: "Which Planet spins backwards relative to the others?",
+      options: [
+        'venus','Mercury','Earth','Neptune' 
+        
+      ],
+      answer: 'venus'
+    },
+    //4
+    {
+      question: "Which Planet Has the Most Moons?", 
+      options: ['Mars','Saturn','Juptier','Uranus'
+      
+      
+      ],
+      answer: 'Juptier'
+    },
+    //5
+    {
+      question:  "What is the Orbital period of Moon?",
+      options: ['30 Days',' 27 Days','28 Days','31 Days'
+      ],
+      answer: ' 27 Days'
+    },
+    //6
+    {
+      question: "Which planet is nearest to the earth?",
+      options: [
+       'Venus','Mars','The Moon','Mercury'
+      ],
+      answer: 'Mercury'
+    },
+    //7
+    {
+      question: "What is the longest continuous time a human has spent in space?",
+      options: ['437 Days','360 Days','202 Days','148 Days'
+      ],
+      answer: '437 Days'
+    }
+  ],
+  questionNumber: 0,
+  score: 0
+  
 };
 
-
-// Template generators
-function generateAnswerList(answers) {}
-
-// Rendering functions
-function renderQuestionText() {}
-'use strict';
-//Update store functions
-
-function updateStore(){}
-
-// Event handlers
 function startQuiz() {
-  $(".startPage").on('click', ".startQuizButton", function (event) {
-    hideAll();
-    $('.questionPage').show();
-
-    
-    // Retrieve answer identifier of user-checked radio button
-    // Update STORE and render appropriate section
-    
+  $('body').on('click', "#startMe", function (event) {
+     createQuestions();
   });
 }
-function questionSubmitted() {
-  $('.questionPage').submit(function(event) { 
+
+function createQuestions() {
+  updateQuestionAndScore();
+  $('main').html(htmlQuestion());
+  updateOptions();
+}
+
+function updateQuestionAndScore() {
+  const html = $(`
+      <section id="js-score"> Score: ${STORE.score}</section>
+      <br>
+    `);
+  $(".question-and-score").html(html);
+}
+
+function htmlQuestion(){
+return $(
+  `<form id='js-questions'>
+    <fieldset>
+      <legend class="questionText">Mission ${STORE.questionNumber+1} of ${STORE.questions.length}</legend>
+      <p class="questionText">${STORE.questions[STORE.questionNumber].question}</p>
+      <div class="js-options options"> </div>
+      <div class="js-feedback feedback"> </div>
+      <button type="submit" id="answer" tabindex="5">Submit</button >
+    </fieldset>
+  </form>`)
+}
+
+function updateOptions()
+{
+  let questionAtHand= STORE.questions[STORE.questionNumber];
+  questionAtHand.options.forEach(function (answer) {
+    
+    $('.js-options').append(
+      `<label class="sizeMe">
+        <input class="radio" type="radio" name="options" id="${answer}" value="${answer}" name="answer" required>
+        <span>${answer}</span>
+      </label>
+      <Br>
+      <Br>
+      `)
+  });
+}
+
+
+function handleQuestions() {
+  $('body').on('click','#next-question', (event) => {
+    if(STORE.questionNumber === STORE.questions.length)
+      {displayResults();}
+    else 
+      {createQuestions();}   
+  });
+}
+
+
+
+function displayResults() {
+    let resultHtml = $(
+    `<div class="results">
+      <form id="js-restart-quiz">
+        <fieldset>
+              <legend id="restartQuiz"> ${STORE.score}  out of  ${STORE.questions.length} missions were successful!</legend>
+              <button type="button" id="restartQuiz"> Back into the stratosphere! </button>
+            </div>
+          </div>
+        </fieldset>
+    </form>
+    </div>`);
+   
+    if(STORE.score == 7){
+      resultHtml.find('fieldset').append(`<br><p class=secretMessage>You are (Inter)Stellar!<P>`
+      );
+    }
+    STORE.questionNumber = 0;
+    STORE.score = 0;
+  $("main").html(resultHtml);
+}
+
+
+function handleSelectOption() {
+  $('body').on("submit","#js-questions", function(event) {
     event.preventDefault();
-    hideAll();
-    $('.wrongAnswerPage').show(); 
-    // Retrieve answer identifier of user-checked radio button
-    // Perform check: User answer === Correct answer?
-    // Update STORE and render appropriate section
+    let currentQuest = STORE.questions[STORE.questionNumber];
+    let selectedOption = $("input[name=options]:checked").val();
+      
+    if(selectedOption === currentQuest.answer) {
+      STORE.score++; 
+        $('main').html(
+        `<section id=answerBox>Affirmative!</section>
+         <div id=answerRightPic> 
+         </div>
+         <button type="button" id="next-question" tabindex="6"> Next >> </button>
+         
+         `     
+         
+      );
+    }
+    else {
+         $('main').html(
+        `<section id=answerBox>Houston we have a problem...</section>
+         <fieldset id=answerWrongPic> 
+         </fieldset>
+         <button type="button" id="next-question" tabindex="6"> Next >> </button>
+         
+        `
+      );
+    }
+    STORE.questionNumber++;
+    $("#js-score").text(`Score: ${STORE.score}`);
   });
 }
-function wrongAnswerSubmitted() {
-  $('.wrongAnswerPage').on('click', ".proceed0", function (event) {
-    hideAll();
-    $('.rightAnswerPage').show(); 
-    // Retrieve answer identifier of user-checked radio button
-    // Perform check: User answer === Correct answer?
-    // Update STORE and render appropriate section
-  });
-}
-function rightAnswerSubmitted() {
-  $('.rightAnswerPage').on('click', ".proceed1", function (event) { 
-    hideAll();
-    $('.endOfQuiz').show(); 
-    // Retrieve answer identifier of user-checked radio button
-    // Perform check: User answer === Correct answer?
-    // Update STORE and render appropriate section
-  });
-}
+
+
+
 function restartSubmitted() {
-  $('.endOfQuiz').on('click', ".restartQuiz", function (event) {  
-    hideAll();
-    $('.startPage').show(); 
-    // Retrieve answer identifier of user-checked radio button
-    // Perform check: User answer === Correct answer?
-    // Update STORE and render appropriate section
+  $('body').on('click', "#restartQuiz", function (event) {  
+   createQuestions();
   });
 }
 
 
- //   handleAnswerSubmitted();
 
-function hideAll(){
-    $('.startPage').hide();
-    $('.questionPage').hide();
-    $(".wrongAnswerPage").hide();
-    $('.rightAnswerPage').hide();
-    $('.endOfQuiz').hide();
-}
-
-
-function render() {
-  if (store.view === "startPage") {
-    hideAll();
-    $('.startPage').show();
-  }else if (store.view === "rightAnswerPage") {
-    hideAll();
-    $('.questionPage').show();
-  }else if (store.view === "wrongAnswerPage") {
-    hideAll();
-    $(".wrongAnswerPage").show();
- }else if (store.view === "questionPage") {
-    hideAll();
-    $('.rightAnswerPage').show();
-  }else{
-    hideAll();
-    $('.endOfQuiz').show();
- }
-}
-
-render();
+function handleQuiz()
+{
 startQuiz();
-questionSubmitted();
-wrongAnswerSubmitted();
-rightAnswerSubmitted();
+handleQuestions();
+handleSelectOption();
 restartSubmitted();
+}
+
+handleQuiz();
