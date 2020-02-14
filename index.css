@@ -96,7 +96,14 @@ legend {
 }
 
 
-@media only screen and (min-width: 320px) {
+@media only screen and (min-width: 7.4em) {
+  fieldset {
+      width: 11.5em;
+    }
+
+
+
+@media only screen and (min-width: 41.5em) {
 fieldset {
     width: 29.5em;
   }

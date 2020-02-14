@@ -32,10 +32,10 @@
     {
       question: "Which Planet spins backwards relative to the others?",
       options: [
-        'venus','Mercury','Earth','Neptune' 
+        'Venus','Mercury','Earth','Neptune' 
         
       ],
-      answer: 'venus'
+      answer: 'Venus'
     },
     //4
     {
@@ -49,9 +49,9 @@
     //5
     {
       question:  "What is the Orbital period of Moon?",
-      options: ['30 Days',' 27 Days','28 Days','31 Days'
+      options: ['30 Days','27 Days','28 Days','31 Days'
       ],
-      answer: ' 27 Days'
+      answer: '27 Days'
     },
     //6
     {
