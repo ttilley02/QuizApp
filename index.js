@@ -141,7 +141,7 @@ function displayResults() {
       <form id="js-restart-quiz">
         <fieldset>
               <legend id="restartQuiz"> ${STORE.score}  out of  ${STORE.questions.length} missions were successful!</legend>
-              <button type="Button" id="restartQuiz"> Back into the stratosphere! </button>
+              <button type="Button" id="restartQuiz"> Back into stratosphere! </button>
             </div>
           </div>
         </fieldset>
